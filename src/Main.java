@@ -5,6 +5,6 @@ public class Main{
         Scanner input = new Scanner(System.in);
         //Commit worked if you're reading this
         System.out.println("Welcome!");
-
+//test
     }
 }

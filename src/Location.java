@@ -19,7 +19,7 @@ class Location<T>{
         if(data instanceof Property x){
             //Property property = (Property) data;
             if(!x.owner.equals(player)){
-                x.collectRentFrom();
+                x.collectRent(player);
             }
         }
         else if(data instanceof Railroad){

@@ -156,7 +156,7 @@ public class Property{
         //Also tradeable for get out of jail free
     }
 
-    public void collectRentFrom(Player player){
+    public void collectRent(Player player){
         if(!player.equals(owner)){
             int rent = 25;
             int mult = 1;

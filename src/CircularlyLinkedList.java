@@ -27,7 +27,7 @@ public class CircularlyLinkedList{
         }
         this.current = current;
     }
-
+//
     public String toString(boolean right){
         String string = "";
         current.tagged = true;

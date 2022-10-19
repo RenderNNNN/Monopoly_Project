@@ -15,9 +15,9 @@ public class Player{
     public int balance;
     public Location<?> location;
 
-    public Player(String name, int balance){
+    public Player(String name){
         this.name = name;
-        this.balance = balance;
+        this.balance = 200;
     }
 
     public void advance(){

@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main{
@@ -10,12 +11,16 @@ public class Main{
         int totalPlayerCount = input.nextInt();
         int counter = 1;
         System.out.println("Players, please enter your names");
-        if(counter <= totalPlayerCount){
-            Player playerOne = new Player(input.nextLine());
-            counter++;
-        }
-        if(counter <= totalPlayerCount){
-            Player playerTwo = new Player(input.nextLine());
-        }
+        //declare and initialize players
+        Player playerOne = new Player("Nathan");
+        Player playerTwo = new Player("Sarah");
+    }
+    public static int[] rollDie(){
+        Random random = new Random(12);
+        return new int[]{(int)(Math.random() * (6) + 1), (int)(Math.random() * (6) + 1)};
+    }
+
+    public static void printBoard(){
+
     }
 }

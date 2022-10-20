@@ -17,9 +17,9 @@ public class Player{
     public int sameMoveCounter;
     public boolean inJail = false;
 
-    public Player(String name, int balance){
+    public Player(String name){
         this.name = name;
-        this.balance = balance;
+        this.balance = 200;
     }
 
     public void advance(String name, boolean ignoreGo){

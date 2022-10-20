@@ -5,8 +5,14 @@ public class Main{
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome! Please enter the total number of players");
         int totalPlayerCount = input.nextInt();
-        for (int i = 1; i <= totalPlayerCount; i++){
-            System.out.println("Player");
+        int counter = 1;
+        System.out.println("Players, please enter your names");
+        if(counter <= totalPlayerCount){
+            Player playerOne = new Player(input.nextLine());
+            counter++;
+        }
+        if(counter <= totalPlayerCount){
+            Player playerTwo = new Player(input.nextLine());
         }
     }
 }

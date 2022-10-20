@@ -1,5 +1,5 @@
-public class CircularlyLinkedList{
-    Location<?> current;
+public class CircularlyLinkedList<T>{
+    Location<T> current;
 
     public CircularlyLinkedList(){ current = null; }
 
@@ -9,11 +9,11 @@ public class CircularlyLinkedList{
 
     }
 
-    public void insert(Object data, boolean right){
-        Location<?> current = new Location<>(data);
+    public void insert(T data, boolean right){
+        Location<T> current = new Location<T>(data);
         if(this.current != null){
-            Location<?> next = this.current; if(!right){ next = this.current.previous; }
-            Location<?> previous = this.current.previous; if(!right){ previous = this.current; }
+            Location<T> next = this.current; if(!right){ next = this.current.previous; }
+            Location<T> previous = this.current.previous; if(!right){ previous = this.current; }
 
             next.previous = current;
             previous.next = current;
@@ -27,7 +27,30 @@ public class CircularlyLinkedList{
         }
         this.current = current;
     }
-//
+
+    public void delete(T data){
+        Location<T> current = this.current;
+        current.tagged = true;
+        while(true){
+            current = current.next;
+            if(current.equals(data)){
+                Location<T> left = current.previous;
+                Location<T> right = current.next;
+                left.next = right;
+                right.previous = left;
+            }
+            if(current.tagged){ current.tagged = false; break; }
+        }
+    }
+
+    /*public Location<?> findName(String name){
+        current.tagged = true;
+        Location<?> x = current;
+        while(true){ if(x in)
+        }
+        return null;
+    }*/
+
     public String toString(boolean right){
         String string = "";
         current.tagged = true;
@@ -51,10 +74,4 @@ public class CircularlyLinkedList{
         }
         System.out.println(("[" + string + "\b\b]"));
     }
-
-
-
-
-
-
 }

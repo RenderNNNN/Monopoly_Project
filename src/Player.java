@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 public class Player{
-    //
     /*
     0) Purple
     1) Light Blue
@@ -13,15 +12,24 @@ public class Player{
      */
     public String name;
     public int balance;
-    public Location<?> location;
+    public Location<BoardSpace> location;
+    public int GOJFC = 0;
+    public int sameMoveCounter;
+    public boolean inJail = false;
 
-    public Player(String name){
+    public Player(String name, int balance){
         this.name = name;
-        this.balance = 200;
+        this.balance = balance;
     }
 
-    public void advance(){
-        //Rolls die, updates location,
+    public void advance(String name, boolean ignoreGo){
+        //Moves player to the number
+        while(true){
+            if(location.data.name.equals("Go") && !ignoreGo){ balance += 200; }
+            if(location.data.name.equals(name)){ break; }
+            location = location.next;
+        }
+
     }
 
 }

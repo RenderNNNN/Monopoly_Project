@@ -1,6 +1,9 @@
 import java.util.Scanner;
 
 public class Main{
+    public static CircularlyLinkedList<BoardSpace> board = new CircularlyLinkedList<>();
+    public static CircularlyLinkedList<Player> players = new CircularlyLinkedList<>();
+
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome! Please enter the total number of players");

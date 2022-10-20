@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-public class Property{
+public class Property extends BoardSpace{
     /*
     (color * 3) - 1
 
@@ -27,9 +27,10 @@ public class Property{
     public int price;
     public int mortgageValue;
     public int housePrice;
-    public String name;
+    //public String name;
 
     public Property(int color, int[] rent, int price, int mortgageValue, int housePrice, String name){
+        super(name);
         owner = null;
         mortgaged = false;
         hotelPrice = housePrice * 5;
@@ -39,7 +40,7 @@ public class Property{
         this.price = price;
         this.mortgageValue = mortgageValue;
         this.housePrice = housePrice;
-        this.name = name;
+        //this.name = name;
     }
 
     public void mortgage(){
@@ -156,14 +157,11 @@ public class Property{
         //Also tradeable for get out of jail free
     }
 
-    public void collectRent(Player player){
+    @Override
+    public void receive(Player player){
         if(!player.equals(owner)){
-            int rent = 25;
-            int mult = 1;
-            for(Property x : properties[color]){ if(!x.equals(this) && x.owner.equals(owner)){ rent *= 2; } }
-            //return rent;
+            player.balance -= rent[houses + (hotel * 5)];
         }
-        //else return 0;
     }
 
     public static Property[][] properties(){
@@ -195,3 +193,56 @@ public class Property{
         return properties;
     }
 }
+/*public String canBuy(int num, int type){ //0 = house, 1 = hotel
+        boolean fullColorSetOwned = true;
+        boolean noneMortgaged = true;
+        boolean allEven = true; //For multiple houses
+        boolean noHotels = true;
+        boolean even = true;
+        int leastHouses = 4;
+        for(Property x : Property.properties){
+            if(x.color == color){
+                if(fullColorSetOwned && !x.owner.equals(owner)){ fullColorSetOwned = false; }
+                if(x.mortgaged){ noneMortgaged = false; }
+                if(x.houses != houses){ allEven = false; }
+                if(x.hotel == 1){ noHotels = false; }
+                if(x.houses + (hotel * 4) < leastHouses){ leastHouses = x.houses; }
+            }
+        }
+        even = !(leastHouses < houses);
+        boolean legalNum1 = even && (type == 0 && num >= 0 && ((num == 0 && houses + 1 <= 4) || (allEven && leastHouses + num <= 4)));
+        boolean legalNum2 = allEven && ((num == 0 && hotel == 0) || noHotels);
+        boolean legalNum = (type == 0 && legalNum1) || (type == 1 && legalNum2);
+        int mult = 3; if(color == 0 || color == 7){ mult = 2; }
+        int price = housePrice;
+        if(num != 0 && type == 0){ price = mult * num * housePrice; }
+        if(num != 0 && type == 1){
+            if(leastHouses == 4){ price = housePrice * mult; }
+            else{ price = ((4 - leastHouses) + 1) * mult * housePrice; }
+        }
+        boolean sufficientFunds = owner.balance - price >= 0;
+        boolean canBuy = fullColorSetOwned && noneMortgaged && legalNum && sufficientFunds;
+        return "";
+    }*/
+/*public boolean canBuyHouse(){
+        /*
+        Conditions:
+            Owner balance >= house price
+            houses < 4
+            hotel == 0
+            Property is not mortgaged
+            Owner owns full color set
+            Owner is building houses evenly
+         */
+        /*boolean bool = true;
+        int leastHouses = 3;
+        if(owner.balance >= housePrice && houses < 4 && hotel == 0){
+            for(Property x : Property.properties){
+                if(x.color == color){
+                    if(x.houses < leastHouses){ leastHouses = x.houses; }
+                    if(x.mortgaged || !x.owner.equals(owner)){ bool = false; break; }
+                }
+            }
+        }
+        return bool && leastHouses == houses;
+    }*/

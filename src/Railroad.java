@@ -1,20 +1,20 @@
 import java.util.ArrayList;
-//
-public class Railroad{
+
+public class Railroad extends BoardSpace{
     public static final Railroad[] railroads = railroads();
 
     public Player owner;
-    public String name = "";
+    //public String name = "";
     public int price = 200;
 
     public Railroad(String name){
+        super(name);
         owner = null;
-        this.name = name;
+        //this.name = name;
     }
 
     //Only the bank can use sell()
     public void sell(Player owner){
-        //boolean here
         this.owner = owner;
         owner.balance -= price;
     }
@@ -35,13 +35,11 @@ public class Railroad{
         owner = otherPlayer;
     }
 
-    public int getRent(Player player){
-        if(!player.equals(owner)){
-            int rent = 25;
-            for(Railroad x : railroads){ if(!x.equals(this) && x.owner.equals(owner)){ rent *= 2; } }
-            return rent;
-        }
-        else return 0;
+    @Override
+    public void receive(Player player){
+        int rent = 25;
+        for(Railroad x : railroads){ if(x.owner.equals(owner) && !x.equals(this)){ rent *= 2; } }
+        if(!player.equals(owner)){ player.balance -= rent; }
     }
 
     private static Railroad[] railroads(){
@@ -53,3 +51,25 @@ public class Railroad{
         return railroads;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*if(!player.equals(owner)){
+            int rent = 25;
+            for(Property x : properties[color]){
+                if(!x.equals(this) && x.owner.equals(owner)){
+                    rent *= 2;
+                }
+            }
+            player.balance -= rent;
+        }*/

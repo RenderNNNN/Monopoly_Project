@@ -1,5 +1,5 @@
-public class BoardSpace{
-
+public class BoardSpace{ //Add significant spaces? So I can make a method to check if they go to jail("   JAIL   ", "GO TO JAIL", "   PARK   ", "    GO    "
+//implement what should happen if they go to jail in main?
     public String name;
     //public String command; //Basic spaces, go, etc.
     public BoardSpace(String name){

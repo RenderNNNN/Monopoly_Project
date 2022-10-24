@@ -17,12 +17,12 @@ public class Player{
     public int sameMoveCounter;
     public boolean inJail = false;
 
-    public Player(String name){
+    public Player(String name){ //can we add a player number? So I can loop through the players numerically, or at least through a player array
         this.name = name;
         this.balance = 200;
     }
 
-    public void advance(String name, boolean ignoreGo){
+    public void advance(String name, boolean ignoreGo){ //add int argument to loop location.next for however many the die rolls?
         //Moves player to the number
         while(true){
             if(location.data.name.equals("Go") && !ignoreGo){ balance += 200; }
@@ -32,4 +32,27 @@ public class Player{
 
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public Location<BoardSpace> getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location<BoardSpace> location) {
+        this.location = location;
+    }
 }
